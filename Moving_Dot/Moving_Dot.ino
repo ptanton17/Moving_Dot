@@ -40,7 +40,10 @@
 #include <MeggyJrSimple.h>    // Required code, line 1 of 2.
   int x = 3;
   int y = 3;
-  int z = 1;
+  int z = 2;
+  int current_x = 0;
+  int current_y = 0;
+  
 void setup()                    // run once, when the sketch starts
 {
   MeggyJrSimpleSetup(); 
@@ -53,20 +56,36 @@ void loop()                     // run over and over again
   CheckButtonsPress();
   if(Button_Left)
     if (x>0)
-      x = x-1;
+      if (ReadPx (x-1,y) == Red)
+        
       drawDot();
+      else
+        x = x-1;
+        drawDot();
   if(Button_Right)
     if (x<7)
-      x = x+1;
+       if (ReadPx (x+1,y) == Red)
+        
       drawDot();
+      else
+        x = x+1;
+        drawDot();
+     
   if(Button_Up)
     if (y<7)
-      y = y+1;
-      drawDot();
+       if (ReadPx (x,y+1) == Red)
+        
+        drawDot();
+      else
+        y = y+1;
+        drawDot();
   if(Button_Down)
     if (y>0)
-      y = y-1;
-      drawDot();
+      if (ReadPx (x,y-1) == Red)
+        drawDot();
+      else
+        y = y-1;
+        drawDot();
   if(Button_B)
     if (z<7)
       z = z +1;
@@ -75,37 +94,33 @@ void loop()                     // run over and over again
     if (z == 7)
       z = 1;
       drawDot();
-  if(Button_Up)
-    if (y > 7)
-      y = 0;
-      drawDot();
-   if(Button_Down)
-    if (y < 0)
-      y = 7;
-      drawDot();
-   if(Button_Right)
-    if (x == 7)
-      x = 0;
-      drawDot();
-   if(Button_Left)
-    if (x == 0)
-      x = 7;
-      drawDot();
+  
       
-  //particle_generator();
-   
+particle_generator();
+delay(100);
    
 }
  
 void drawDot()
 {
-  ClearSlate();
+  
+  DrawPx(current_x,current_y,0);
+  
   DrawPx(x,y,z);
+  current_x = x;
+  current_y = y;
+   for(int wall_x = 1;wall_x <7;wall_x ++)
+    {
+    DrawPx(wall_x,4,Red);
+    }
   DisplaySlate();
+  
 }
 void particle_generator()
 {
-  
-  int startx = random(0,7);
+  int startx = random(0,8);
   DrawPx(startx,0, Red);
+  DisplaySlate();
 }
+ //d
+
