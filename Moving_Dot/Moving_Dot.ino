@@ -43,6 +43,7 @@
   int z = 2;
   int current_x = 0;
   int current_y = 0;
+  int enemy_1y = 0;
   
 void setup()                    // run once, when the sketch starts
 {
@@ -53,6 +54,8 @@ void setup()                    // run once, when the sketch starts
 
 void loop()                     // run over and over again
 {
+  //delay(1000);
+  
   CheckButtonsPress();
   if(Button_Left)
     if (x>0)
@@ -122,5 +125,5 @@ void particle_generator()
   DrawPx(startx,0, Red);
   DisplaySlate();
 }
- //d
+ 
 
