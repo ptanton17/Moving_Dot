@@ -43,8 +43,8 @@
   int z = 2;
   int current_x = 0;
   int current_y = 0;
-  int enemy_1y = 0;
-  
+  int xcheck = 7;
+  int ycheck = 7;
 void setup()                    // run once, when the sketch starts
 {
   MeggyJrSimpleSetup(); 
@@ -54,8 +54,6 @@ void setup()                    // run once, when the sketch starts
 
 void loop()                     // run over and over again
 {
-  //delay(1000);
-  
   CheckButtonsPress();
   if(Button_Left)
     if (x>0)
@@ -99,9 +97,10 @@ void loop()                     // run over and over again
       drawDot();
   
       
-particle_generator();
+
 delay(100);
-   
+   //initiator goes here
+   // random x goes here
 }
  
 void drawDot()
@@ -116,6 +115,10 @@ void drawDot()
     {
     DrawPx(wall_x,4,Red);
     }
+    particle_generator();
+moveenemies();
+if (ReadPx(current_x, current_y) == Green);
+  delay(10000000);
   DisplaySlate();
   
 }
@@ -125,5 +128,34 @@ void particle_generator()
   DrawPx(startx,0, Red);
   DisplaySlate();
 }
+void moveenemies()
+{
+  for(int ycheck=7;ycheck>0;y--)
+  {
+    
+    for(int xcheck=0;xcheck<8;x++);
+    {
+    if (ReadPx(xcheck,ycheck) == Green);
+      {
+        DrawPx(xcheck,ycheck,0);
+       DrawPx( xcheck,ycheck +1, Green);
+      }
+    }
+  }
+}
+/*class Enemy
+{ I tried using classes. It didn't work.
+  private:
+    Enemy(int pin);
+    int enemyx = 0
+    
+    void movement();
  
-
+    
+};
+void Enemy::movement()
+{
+  DrawPx(enemyx,enemyy,0
+  enemyy = enemyy+1
+  DrawPx (enemyx,enemyy,1)
+  */
